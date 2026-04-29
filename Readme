@@ -1,132 +1,38 @@
-Project Overview
+# Tire-Road Friction Coefficient Estimation using Kalman Filter
+
+## Project Overview
 
 This project focuses on estimating the tire-road friction coefficient (μ) using Kalman Filter based observer design in MATLAB.
 
 The friction coefficient is one of the most important parameters in vehicle braking systems because it determines the available tire grip between the road and the tire. It directly affects the performance of systems such as:
 
-ABS (Anti-lock Braking System)
-ESC (Electronic Stability Control)
-Traction Control
-Autonomous Emergency Braking
+- ABS (Anti-lock Braking System)
+- ESC (Electronic Stability Control)
+- Traction Control
+- Autonomous Emergency Braking
 
 Since the friction coefficient cannot be directly measured using a physical sensor, it must be estimated using vehicle measurements and mathematical models.
 
 This project was developed in two phases:
 
-Phase 1: Speed-based friction estimation
-Phase 2: Acceleration-based friction estimation
+- Phase 1: Speed-based friction estimation
+- Phase 2: Acceleration-based friction estimation
 
 The second phase improves estimation robustness by addressing observability limitations found in the first model.
 
-Objective
+---
+
+## Objective
 
 To design a state-space observer using a Kalman Filter for estimating the tire-road friction coefficient under noisy sensor conditions.
 
-Phase 1: Speed-Based Friction Estimation
-Theory
+---
+
+# Phase 1: Speed-Based Friction Estimation
+
+## Theory
 
 The vehicle braking model is based on:
 
+```text
 dv/dt = -μg
-
-Where:
-
-v = vehicle speed
-μ = friction coefficient
-g = gravitational acceleration
-
-The state vector is defined as:
-
-x = [v
-μ]
-
-where:
-
-vehicle speed is measured
-friction coefficient is estimated
-
-Gaussian sensor noise is added to simulate realistic speed measurements.
-
-A Kalman Filter is designed to estimate both speed and friction coefficient from noisy measurements.
-
-Observation
-
-The initial speed-based model showed estimation drift near zero velocity due to weak observability.
-
-As the vehicle speed approached zero, the system had limited information to accurately estimate friction coefficient.
-
-This led to the development of Phase 2.
-
-Phase 2: Acceleration-Based Friction Estimation
-Theory
-
-The improved model uses:
-
-a = -μg
-
-which gives:
-
-μ = -a/g
-
-Where:
-
-a = vehicle acceleration (deceleration)
-
-Since acceleration directly reflects tire-road friction, this model provides stronger estimation performance.
-
-The state is simplified to:
-
-x = [μ]
-
-and the measurement equation becomes:
-
-y = -gμ
-
-where acceleration is the measured output.
-
-A Kalman Filter is used to estimate friction coefficient using noisy acceleration sensor data.
-
-Result
-
-The acceleration-based model showed stable convergence of estimated friction coefficient toward the true value.
-
-This provided significantly better observer performance compared to the speed-based model.
-
-MATLAB Files
-phase1_speed_based_estimation.m
-
-Includes:
-
-braking model using speed
-noisy speed sensor simulation
-state-space model
-Kalman filter design
-friction coefficient estimation
-phase2_acceleration_based_estimation.m
-
-Includes:
-
-braking model using acceleration
-noisy acceleration sensor simulation
-improved observer design
-Kalman filter implementation
-stable friction estimation
-Sample Results
-Phase 1
-
-Speed-based estimation demonstrated the concept successfully but showed estimator drift due to weak observability.
-
-Phase 2
-
-Acceleration-based estimation showed stable convergence of estimated friction coefficient close to the true friction value.
-
-This made the observer significantly more robust and realistic for automotive applications.
-
-Key Learnings
-State-space system modeling
-Observer design fundamentals
-Kalman Filter implementation
-Process noise vs measurement noise tuning
-System observability limitations
-Model refinement through engineering iteration
-Automotive braking system estimation concepts
