@@ -47,6 +47,10 @@ x = [v
 
 ---
 
+## Phase 1 Result
+
+![Speed Estimation](plots/phase_1.png)
+
 ### Observation
 
 The speed-based model showed estimation drift near zero velocity due to weak observability.
@@ -74,6 +78,9 @@ Measurement equation:
 y = -gμ
 
 ---
+## Phase 2 Result
+
+![Acceleration Estimation](plots/phase_2.png)
 
 ### Result
 
